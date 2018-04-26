@@ -62,6 +62,10 @@ def rectangle_of_stars(r, c):
     #   would defeat the goal of providing practice at loops within loops.
     # ------------------------------------------------------------------
 
+    for k in range(r):
+        for j in range(c):
+            print('*', end="")
+        print()
 
 def run_test_triangle_of_stars():
     """ Tests the    triangle_of_stars    function. """
@@ -117,7 +121,10 @@ def triangle_of_stars(r):
     #   would defeat the goal of providing practice at loops within loops.
     # ------------------------------------------------------------------
 
-
+    for k in range(r):
+        for _ in range(k + 1):
+            print('*', end="")
+        print()
 def run_test_decreasing_exclamation_marks():
     """ Tests the    decreasing_exclamation_marks    function. """
     print()
