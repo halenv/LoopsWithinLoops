@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Noelle Hale.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,9 +80,39 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    dx = 2 * circle.radius
+    dy = 2 * circle.radius
+
+    for k in range(r + 3):
+        for j in range(3):
+
+            # Vertical leg + 3 by 3
+            v_center = rg.Point(circle.center.x + (dx * j), circle.center.y + (dy * k))
+            v_circle = rg.Circle(v_center, circle.radius)
+            v_circle.fill_color = circle.fill_color
+            v_circle.attach_to(window)
+            window.render(0.1)
+
+    #first circle of Horizontal leg
+    first_circle_center = rg.Point(circle.center.x + (3 * dx), circle.center.y + (r * dy))
+    first_circle = rg.Circle(first_circle_center, circle.radius)
+
+
+    for k in range(3):
+        for j in range(c):
+            # Horizontal leg
+            h_center = rg.Point(first_circle_center.x + (dx * j), first_circle_center.y + (dy * k))
+            h_circle = rg.Circle(h_center, circle.radius)
+            h_circle.fill_color = circle.fill_color
+            h_circle.attach_to(window)
+            window.render(0.1)
+
+
+
 
 
 def run_test_draw_wall_on_right():
