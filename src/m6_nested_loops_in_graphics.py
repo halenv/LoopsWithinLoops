@@ -11,7 +11,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    # run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -99,7 +99,6 @@ def draw_L(window, circle, r, c):
 
     #first circle of Horizontal leg
     first_circle_center = rg.Point(circle.center.x + (3 * dx), circle.center.y + (r * dy))
-    first_circle = rg.Circle(first_circle_center, circle.radius)
 
 
     for k in range(3):
@@ -151,9 +150,27 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    dx = rectangle.get_width()
+    dy = rectangle.get_height()
+
+    for k in range(n):
+        c1 = rg.Point(rectangle.get_upper_left_corner().x - (k * dx), rectangle.get_upper_left_corner().y + (k * dy))
+        c2 = rg.Point(rectangle.get_lower_right_corner().x - (k * dx), rectangle.get_lower_right_corner().y + (k * dy))
+        new_start_rect = rg.Rectangle(c1, c2)
+        new_start_rect.attach_to(window)
+        window.render(0.1)
+
+        for j in range(n - (k + 1)):
+            new_c1 = rg.Point(c1.x, c1.y + ((j + 1) * dy))
+            new_c2 = rg.Point(c2.x, c2.y + ((j + 1) * dy))
+            new_rect = rg.Rectangle(new_c1, new_c2)
+            new_rect.attach_to(window)
+            window.render(0.1)
+
 
 
 # ----------------------------------------------------------------------
